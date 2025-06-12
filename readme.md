@@ -34,7 +34,7 @@ With a view of expansion and improved availability for my base infrastructure I 
      - **HTTPS (Port 443)**
    - Launched and confirmed instance state
    ![running ec2](./ec2%20available.jpg)
-   - Created and allocated an Elastic IP to maintain a consistent address across instance restarts.
+   - Create and allocate Elastic IP to maintain a consistent address across instance restarts.
 
 3. **Accessed the Server via SSH and setup web server (Nginx)**:
    - SSH into the server by using the command below
@@ -46,21 +46,21 @@ With a view of expansion and improved availability for my base infrastructure I 
    ```
    - Confirm Nginx status with  systemd
    ` sudo systemctl status nginx `
-   - Confirm Nginx is available by visiting your ip address with http (run curl ifconfig.me or copy from your EC2 dashboard)
+   - Confirm Nginx is available by visiting ip address with http (run curl ifconfig.me or copy from your EC2 dashboard)
    `http://serverip`
    - Build dynamic landing page with HTML and CSS and copy your index.html, style.css, and any assets to /var/www/html/ on your server.
 
 4. **Set up custom domain and secure with Let’s Encrypt SSL (Certbot)**
-   - Configured a custom domain using AWS Route 53.
-     - Navigated to route53 in the AWS console
-     - Selected hosted zone for my registered domain.
-     - Added an A record to map the server's IP address to thorix.kennycloudchronicles.com
+   - Configure a custom domain using AWS Route 53.
+     - Navigate to route53 in the AWS console
+     - Select hosted zone for registered domain.
+     - Add an A record to map the server's IP address to domain name in my case (thorix.kennycloudchronicles.com)
    - Secured with Let’s Encrypt SSL (Certbot)
     - Install Certbot
     ``` sudo apt install certbot python3-certbot-nginx -y
         sudo certbot --nginx
     ```
-    - Followed the prompts to complete SSL cert geenration.
+    - Follow the prompts to complete SSL cert generation.
 
 My site is accesible via domain name at https://thorix.kennycloudchronicles.com and ip address 44.218.159.55
 
