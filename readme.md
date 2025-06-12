@@ -33,6 +33,7 @@ With a view of expansion and improved availability for my base infrastructure I 
      - **HTTP (Port 80)**
      - **HTTPS (Port 443)**
    - Launched and confirmed instance state
+   ![running ec2](./ec2%20available.jpg)
    - Created and allocated an Elastic IP to maintain a consistent address across instance restarts.
 
 3. **Accessed the Server via SSH and setup web server (Nginx)**:
