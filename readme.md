@@ -9,19 +9,18 @@ To create a dynamic prototype of a web application with the requirements listed 
 - Production-Ready Networking & Security 
 - Bonus: Secure with Let’s Encrypt SSL (Certbot) and a custom domain.
 
-## Server Setup
-
 **Cloud Provider:** AWS (Amazon Web Services)
 
-### Steps:
+## Steps:
 1. **Set up base infrastructure**
 To begin preparation for this project a base infrastructure of VPC, Subnets, Route table and internet gateway (igw) is required on AWS
 
-- Create a VPC on AWS to include required subnet (public or private)
-- Create an internet gateway to enable connection to the internet or endpoints to enable private connections to other services
-- Configure route tables to route traffic from your subnets to igw or required endpoint.
+   - Create a VPC on AWS to include required subnet (public or private)
+   - Create an internet gateway to enable connection to the internet or endpoints to enable private connections to other services
+   - Configure route tables to route traffic from your subnets to igw or required endpoint.
 
 With a view of expansion and improved availability for my base infrastructure I created a VPC with 4 subnets (2 private, 2 public), route to the internet through an internet gateway, routes and s3endpoint for my private subnets. You may adopt an alternative approach to setting up your base infrastructure, provided all required components are present and properly configured.
+
 ![base](./Base%20Infra.JPG)
 
 2. **Provision an EC2 Instance with Ubuntu distribution**:
@@ -44,5 +43,29 @@ With a view of expansion and improved availability for my base infrastructure I 
    sudo apt update
    sudo apt install nginx -y
    ```
+   - Confirm Nginx status with  systemd
+   ` sudo systemctl status nginx `
+   - Confirm Nginx is available by visiting your ip address with http (run curl ifconfig.me or copy from your EC2 dashboard)
+   `http://serverip`
+   - Build dynamic landing page with HTML and CSS and copy your index.html, style.css, and any assets to /var/www/html/ on your server.
 
-   
+4. **Set up custom domain and secure with Let’s Encrypt SSL (Certbot)**
+   - Configured a custom domain using AWS Route 53.
+     - Navigated to route53 in the AWS console
+     - Selected hosted zone for my registered domain.
+     - Added an A record to map the server's IP address to thorix.kennycloudchronicles.com
+   - Secured with Let’s Encrypt SSL (Certbot)
+    - Install Certbot
+    ``` sudo apt install certbot python3-certbot-nginx -y
+        sudo certbot --nginx
+    ```
+    - Followed the prompts to complete SSL cert geenration.
+
+My site is accesible via domain name at https://thorix.kennycloudchronicles.com and ip address 44.218.159.55
+
+![rendered page](./page%20rendered.JPG)
+
+## Conclusion
+
+This project demonstrates the deployment of a dynamic web application using cloud infrastructure best practices in line with the requirements AltSchool Cloud Engineering second semester exam 2025.
+© 2025 Kehinde Ibrahim (Kenny).
